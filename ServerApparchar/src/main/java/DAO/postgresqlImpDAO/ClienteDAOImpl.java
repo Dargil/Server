@@ -45,7 +45,6 @@ public class ClienteDAOImpl implements ClienteDAO {
             stmt.executeUpdate();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }

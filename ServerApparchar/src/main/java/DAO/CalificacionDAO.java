@@ -12,5 +12,5 @@ import VO.CalificacionVO;
  * @author jeffe
  */
 public interface CalificacionDAO extends Facade<CalificacionVO, String> {
-
+ CalificacionVO consultar(String idUser,String idEvento);
 }

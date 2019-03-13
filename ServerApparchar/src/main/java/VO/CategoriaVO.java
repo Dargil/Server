@@ -13,9 +13,9 @@ public class CategoriaVO {
 
     public int id;
     public String nombre;
-    public String icono;
+    public byte[] icono;
 
-    public CategoriaVO(int id, String nombre, String icono) {
+    public CategoriaVO(int id, String nombre, byte[] icono) {
         this.id = id;
         this.nombre = nombre;
         this.icono = icono;
@@ -37,17 +37,17 @@ public class CategoriaVO {
         this.nombre = nombre;
     }
 
-    public String getIcono() {
+    public byte[] getIcono() {
         return icono;
     }
 
-    public void setIcono(String icono) {
+    public void setIcono(byte[] icono) {
         this.icono = icono;
     }
 
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + ", nombre=" + nombre + ", icono=" + icono + '}';
+        return "CategoriaVO{" + "id=" + id + ", nombre=" + nombre + ", icono=" + icono + '}';
     }
 
 }
