@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>SERVCliente</servlet-name>
+        <servlet-class>SERVLET.SERVCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SERVEmpresa</servlet-name>
+        <servlet-class>SERVLET.SERVEmpresa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SERVCategoria</servlet-name>
+        <servlet-class>SERVLET.SERVCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SERVRegister</servlet-name>
+        <servlet-class>SERVLET.SERVRegister</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SERVCliente</servlet-name>
+        <url-pattern>/SERVCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVEmpresa</servlet-name>
+        <url-pattern>/SERVEmpresa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVCategoria</servlet-name>
+        <url-pattern>/SERVCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVRegister</servlet-name>
+        <url-pattern>/SERVRegister</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
