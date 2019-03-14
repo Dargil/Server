@@ -13,4 +13,7 @@ import VO.EmpresaVO;
  */
 public interface EmpresaDAO extends Facade<EmpresaVO, String> {
 
+    int login(String user, String contrasenia);
+
+    String getNit(String user);
 }

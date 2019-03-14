@@ -68,7 +68,7 @@ public class SERVCliente extends HttpServlet {
                 String a = Utils.toJson(resultado);
                 out.write(o.toString());
                 out.print(o.toString());
-                System.out.println("se envio: " + a);
+                System.out.println("se envio: " + o.toString());
                 myFacade.CerrarConexion();
             } else if (modificar != null) {
                 System.out.println("se recibio: " + modificar);

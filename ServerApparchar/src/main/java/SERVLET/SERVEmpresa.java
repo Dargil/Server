@@ -8,6 +8,8 @@ package SERVLET;
 import DAO.postgresqlImpDAO.FacadeFactory;
 import Utilities.Utils;
 import VO.EmpresaVO;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -44,23 +46,27 @@ public class SERVEmpresa extends HttpServlet {
             String listar = "";
             String eliminar = "";
             String consultar = "";
-
+            String login = "";
             insertar = request.getParameter("insertar");
             modificar = request.getParameter("modificar");
             listar = request.getParameter("listar");
             eliminar = request.getParameter("eliminar");
             consultar = request.getParameter("consultar");
-
+            login = request.getParameter("login");
             if (insertar != null) {
                 System.out.println("se recibio: " + insertar);
-                EmpresaVO myEmpresa = (EmpresaVO) Utils.fromJson(insertar, EmpresaVO.class);
+                Gson myGson = new Gson();
+                EmpresaVO myEmpresa = (EmpresaVO) myGson.fromJson(insertar, EmpresaVO.class);
+                System.out.println(myEmpresa.toString());
                 FacadeFactory myFacade = new FacadeFactory();
                 myFacade.Conexion();
                 boolean resultado = myFacade.getEmpresaDAO().insertar(myEmpresa);
-                String a = Utils.toJson(resultado);
-                out.write(a);
-                out.print(a);
-                System.out.println("se envio: " + a);
+                System.out.println("resultado " + resultado);
+                JsonObject o = new JsonObject();
+                o.addProperty("respuesta", myGson.toJson(resultado));
+                out.write(o.toString());
+                out.print(o.toString());
+                System.out.println("se envio: " + o.toString());
                 myFacade.CerrarConexion();
             } else if (modificar != null) {
                 System.out.println("se recibio: " + modificar);
@@ -106,6 +112,23 @@ public class SERVEmpresa extends HttpServlet {
                 out.print(a);
                 System.out.println("se envio: " + a);
                 myFacade.CerrarConexion();
+            } else if (login != null) {
+                System.out.println("se recibio: " + login);
+                Gson myGson = new Gson();
+                EmpresaVO myEmpresa = (EmpresaVO) myGson.fromJson(login, EmpresaVO.class);
+                System.out.println(myEmpresa.toString());
+                FacadeFactory myFacade = new FacadeFactory();
+                myFacade.Conexion();
+                int resultado = myFacade.getEmpresaDAO().login(myEmpresa.getUsuario(), myEmpresa.getContrasenia());
+                String nitEmpresa = myFacade.getEmpresaDAO().getNit(myEmpresa.getUsuario());
+
+//String nitEmpresa="alv";
+                System.out.println("resultado " + resultado);
+                JsonObject o = new JsonObject();
+                o.addProperty("respuesta", myGson.toJson(resultado) + ";" + nitEmpresa);
+                out.write(o.toString());
+                out.print(o.toString());
+                System.out.println("se envio: " + o.toString());
             }
 
         }
