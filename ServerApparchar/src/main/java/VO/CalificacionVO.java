@@ -13,7 +13,7 @@ public class CalificacionVO {
 
     public double porcentaje;
     public String comentario;
-    public String multimedia;
+    public byte[] multimedia;
     public String hora;
     public int idUser;
     public int idEvento;
@@ -22,7 +22,7 @@ public class CalificacionVO {
     public String horaF;
     public String fechaE;
 
-    public CalificacionVO(double porcentaje, String comentario, String multimedia, String hora, int idUser, int idEvento, String fecha, String horaI, String horaF, String fechaE) {
+    public CalificacionVO(double porcentaje, String comentario, byte[] multimedia, String hora, int idUser, int idEvento, String fecha, String horaI, String horaF, String fechaE) {
         this.porcentaje = porcentaje;
         this.comentario = comentario;
         this.multimedia = multimedia;
@@ -33,10 +33,6 @@ public class CalificacionVO {
         this.horaI = horaI;
         this.horaF = horaF;
         this.fechaE = fechaE;
-    }
-
-    public CalificacionVO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public double getPorcentaje() {
@@ -55,11 +51,11 @@ public class CalificacionVO {
         this.comentario = comentario;
     }
 
-    public String getMultimedia() {
+    public byte[] getMultimedia() {
         return multimedia;
     }
 
-    public void setMultimedia(String multimedia) {
+    public void setMultimedia(byte[] multimedia) {
         this.multimedia = multimedia;
     }
 
@@ -121,7 +117,7 @@ public class CalificacionVO {
 
     @Override
     public String toString() {
-        return "Calificacion{" + "porcentaje=" + porcentaje + ", comentario=" + comentario + ", multimedia=" + multimedia + ", hora=" + hora + ", idUser=" + idUser + ", idEvento=" + idEvento + ", fecha=" + fecha + ", horaI=" + horaI + ", horaF=" + horaF + ", fechaE=" + fechaE + '}';
+        return "CalificacionVO{" + "porcentaje=" + porcentaje + ", comentario=" + comentario + ", multimedia=" + multimedia + ", hora=" + hora + ", idUser=" + idUser + ", idEvento=" + idEvento + ", fecha=" + fecha + ", horaI=" + horaI + ", horaF=" + horaF + ", fechaE=" + fechaE + '}';
     }
 
 }

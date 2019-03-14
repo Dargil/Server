@@ -11,7 +11,7 @@ package VO;
  */
 public class EmpresaVO {
 
-    public int nitEmpresa;
+    public String nitEmpresa;
     public String nombre;
     public String ubicacion;
     public String telefono;
@@ -20,7 +20,7 @@ public class EmpresaVO {
     public String usuario;
     public String contrasenia;
 
-    public EmpresaVO(int nitEmpresa, String nombre, String ubicacion, String telefono, String correo, String descripcion, String usuario, String contrasenia) {
+    public EmpresaVO(String nitEmpresa, String nombre, String ubicacion, String telefono, String correo, String descripcion, String usuario, String contrasenia) {
         this.nitEmpresa = nitEmpresa;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -31,11 +31,11 @@ public class EmpresaVO {
         this.contrasenia = contrasenia;
     }
 
-    public int getNitEmpresa() {
+    public String getNitEmpresa() {
         return nitEmpresa;
     }
 
-    public void setNitEmpresa(int nitEmpresa) {
+    public void setNitEmpresa(String nitEmpresa) {
         this.nitEmpresa = nitEmpresa;
     }
 

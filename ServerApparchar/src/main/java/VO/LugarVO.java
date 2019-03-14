@@ -15,6 +15,12 @@ public class LugarVO {
     public String nombre;
     public String descripcion;
 
+    public LugarVO(String direccion, String nombre, String descripcion) {
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
     public String getDireccion() {
         return direccion;
     }
