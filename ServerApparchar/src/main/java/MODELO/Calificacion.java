@@ -7,7 +7,7 @@ package MODELO;
 
 /**
  *
- * @author jeffe
+ * @author jefferson dario marin giraldo
  */
 public class Calificacion {
 
