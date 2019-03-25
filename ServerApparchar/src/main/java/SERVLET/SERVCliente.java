@@ -6,8 +6,8 @@
 package SERVLET;
 
 import DAO.postgresqlImpDAO.FacadeFactory;
+import Entidades.Cliente;
 import Utilities.Utils;
-import VO.ClienteVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -47,81 +47,40 @@ public class SERVCliente extends HttpServlet {
             String listar = "";
             String eliminar = "";
             String consultar = "";
+            String login = "";
 
             insertar = request.getParameter("insertar");
             modificar = request.getParameter("modificar");
             listar = request.getParameter("listar");
             eliminar = request.getParameter("eliminar");
             consultar = request.getParameter("consultar");
+            login = request.getParameter("login");
 
             if (insertar != null) {
                 System.out.println("se recibio: " + insertar);
                 Gson myGson = new Gson();
-                ClienteVO myCliente = (ClienteVO) myGson.fromJson(insertar, ClienteVO.class);
+                Cliente myCliente = (Cliente) myGson.fromJson(insertar, Cliente.class);
                 System.out.println(myCliente.toString());
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                boolean resultado = myFacade.getClienteDAO().insertar(myCliente);
+                boolean resultado = FacadeFactory.getFacade().insertarGenerico(myCliente);
                 System.out.println("resultado " + resultado);
                 JsonObject o = new JsonObject();
                 o.addProperty("respuesta", myGson.toJson(resultado));
-                String a = Utils.toJson(resultado);
                 out.write(o.toString());
                 out.print(o.toString());
                 System.out.println("se envio: " + o.toString());
-                myFacade.CerrarConexion();
-            } else if (modificar != null) {
-                System.out.println("se recibio: " + modificar);
+            } else if (login != null) {
+                System.out.println("se recibio: " + login);
                 Gson myGson = new Gson();
-                ClienteVO myCliente = (ClienteVO) myGson.fromJson(modificar, ClienteVO.class);
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                boolean resultado = myFacade.getClienteDAO().modificar(myCliente);
-                String a = myGson.toJson(resultado);
-                out.write(a);
-                out.print(a);
-                System.out.println("se envio: " + a);
-                myFacade.CerrarConexion();
-            } else if (listar != null) {
-                System.out.println("se recibio: " + listar);
-                //ClienteVO myCliente = (ClienteVO) Utils.fromJson(listar, ClienteVO.class);
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                ArrayList<ClienteVO> resultado = myFacade.getClienteDAO().listar();
-                Gson myGson = new Gson();
+                Cliente myCliente = (Cliente) myGson.fromJson(login, Cliente.class);
+                System.out.println(myCliente.toString());
+                int resultado = FacadeFactory.getFacade().loginGenerico(myCliente.getUsuario(), myCliente.getContrasenia(), myCliente);
                 JsonObject o = new JsonObject();
-                o.addProperty("respuesta", myGson.toJson(resultado));
-                String a = myGson.toJson(resultado);
+                o.addProperty("count", myGson.toJson(resultado));
+                o.addProperty("tipo", "cliente");
                 out.write(o.toString());
                 out.print(o.toString());
-                System.out.println("se envio: " + a);
-                myFacade.CerrarConexion();
-            } else if (eliminar != null) {
-                System.out.println("se recibio: " + eliminar);
-                Gson myGson = new Gson();
-                ClienteVO myCliente = (ClienteVO) myGson.fromJson(eliminar, ClienteVO.class);
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                boolean resultado = myFacade.getClienteDAO().eliminar(myCliente);
-                String a = myGson.toJson(resultado);
-                out.write(a);
-                out.print(a);
-                System.out.println("se envio: " + a);
-                myFacade.CerrarConexion();
-            } else if (consultar != null) {
-                System.out.println("se recibio: " + consultar);
-                Gson myGson = new Gson();
-                ClienteVO myCliente = (ClienteVO) myGson.fromJson(consultar, ClienteVO.class);
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                ClienteVO resultado = myFacade.getClienteDAO().consultar(String.valueOf(myCliente.getId()));
-                String a = myGson.toJson(resultado);
-                out.write(a);
-                out.print(a);
-                System.out.println("se envio: " + a);
-                myFacade.CerrarConexion();
+                System.out.println("se envio: " + o.toString());
             }
-
         }
     }
 

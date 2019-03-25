@@ -5,12 +5,12 @@
  */
 package DAO;
 
-import VO.LugarVO;
+import Entidades.Lugar;
 
 /**
  *
  * @author jeffe
  */
-public interface LugarDAO extends Facade<LugarVO, String> {
+public interface LugarDAO extends DAOWork<Lugar, String> {
 
 }

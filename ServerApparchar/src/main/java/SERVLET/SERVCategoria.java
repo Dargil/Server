@@ -6,13 +6,16 @@
 package SERVLET;
 
 import DAO.postgresqlImpDAO.FacadeFactory;
-import VO.CategoriaVO;
+import Entidades.Categoria;
+import MODELO.CategoriaM;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -55,16 +58,23 @@ public class SERVCategoria extends HttpServlet {
             if (listar != null) {
                 System.out.println("se recibio: " + listar);
                 Gson myGson = new Gson();
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                ArrayList<CategoriaVO> resultado = myFacade.getCategoriaDAO().listar();
+                Categoria myCategoria = new Categoria();
+                List<Categoria> resultado = FacadeFactory.getFacade().listarGenerico(myCategoria);
                 System.out.println("resultado " + resultado.toString());
+                ArrayList<CategoriaM> categoria = new ArrayList<>();
+                for (int i = 0; i < resultado.size(); i++) {
+                    CategoriaM n = new CategoriaM();
+                    Categoria b = resultado.get(i);
+                    n.setId(b.getId());
+                    n.setNombre(b.getNombre());
+                    categoria.add(n);
+                }
+
                 JsonObject o = new JsonObject();
-                o.addProperty("respuesta", myGson.toJson(resultado));
+                o.addProperty("respuesta", myGson.toJson(categoria));
                 out.write(o.toString());
                 out.print(o.toString());
                 System.out.println("se envio: " + o.toString());
-                myFacade.CerrarConexion();
             }
         }
     }

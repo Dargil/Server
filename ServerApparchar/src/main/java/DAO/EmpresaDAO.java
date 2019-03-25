@@ -5,13 +5,13 @@
  */
 package DAO;
 
-import VO.EmpresaVO;
+import Entidades.Empresa;
 
 /**
  *
  * @author jeffe
  */
-public interface EmpresaDAO extends Facade<EmpresaVO, String> {
+public interface EmpresaDAO extends DAOWork<Empresa, String> {
 
     int login(String user, String contrasenia);
 

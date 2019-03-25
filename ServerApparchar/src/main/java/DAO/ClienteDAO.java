@@ -5,14 +5,15 @@
  */
 package DAO;
 
-import VO.ClienteVO;
+import Entidades.Cliente;
 
 /**
  *
  * @author jeffe
  */
-public interface ClienteDAO extends Facade<ClienteVO, String> {
+public interface ClienteDAO extends DAOWork<Cliente, String> {
 
-    
-    
+    int login(String user, String contrasenia);
+
+    String getUsuario(String user);
 }
