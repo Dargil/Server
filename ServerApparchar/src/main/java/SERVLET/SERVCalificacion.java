@@ -7,10 +7,12 @@ package SERVLET;
 
 import DAO.postgresqlImpDAO.FacadeFactory;
 import Entidades.Calificacion;
+import MODELO.CalificacionM;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,14 +58,26 @@ public class SERVCalificacion extends HttpServlet {
                 Gson myGson = new Gson();
                 Calificacion myCalificacion = (Calificacion) myGson.fromJson(insertar, Calificacion.class);
                 System.out.println(myCalificacion.toString());
-                boolean resultado = FacadeFactory.getFacade().insertarGenerico(myCalificacion);
+                boolean resultado = FacadeFactory.getFacade().insertarCalificaciones(myCalificacion);
                 System.out.println("resultado " + resultado);
                 JsonObject o = new JsonObject();
                 o.addProperty("respuesta", myGson.toJson(resultado));
                 out.write(o.toString());
                 out.print(o.toString());
                 System.out.println("se envio: " + o.toString());
+            } else if (listar != null) {
+                System.out.println("se recibio: " + listar);
+                Gson myGson = new Gson();
+                int id = Integer.valueOf(listar);
+                List<CalificacionM> resultado = FacadeFactory.getFacade().getCalificaciones(id);
+                System.out.println("resultado " + resultado.toString());
+                JsonObject o = new JsonObject();
+                o.addProperty("respuesta", myGson.toJson(resultado));
+                out.write(o.toString());
+                out.print(o.toString());
+                System.out.println("se envio: " + o.toString());
             }
+
         }
     }
 

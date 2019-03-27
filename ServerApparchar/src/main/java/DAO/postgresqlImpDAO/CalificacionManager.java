@@ -32,6 +32,36 @@ public class CalificacionManager implements CalificacionDAO {
         }
     }
 
+    public boolean insertarCal(Calificacion a) {
+        try {
+            em.getTransaction().begin();
+            
+            Calificacion aux = em.find(Calificacion.class, a.getCalificacionPK());
+            if (aux != null) {
+                if (a.getMultimedia() != null) {
+                    aux.setMultimedia(a.getMultimedia());
+                }
+                if (a.getComentario() != null) {
+                    aux.setComentario(a.getComentario());
+                }
+                if (a.getPorcentaje() != null) {
+                    aux.setPorcentaje(a.getPorcentaje());
+                }
+                em.getTransaction().commit();
+                em.close();
+            } else {
+                em.persist(a);
+                em.getTransaction().commit();
+                em.close();
+                System.out.println("------------------------------PRUEBAAAAAA---------------");
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public boolean modificar(Calificacion a) {
         try {
@@ -85,12 +115,27 @@ public class CalificacionManager implements CalificacionDAO {
 
     @Override
     public Calificacion consultar(String id) {
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Calificacion consultar(String idUser, String idEvento) {
         return null;
+    }
+
+    public List<Calificacion> listarbyID(int id) {
+
+        try {
+            em.getTransaction().begin();
+            List<Calificacion> result = em.createQuery("SELECT c FROM Calificacion c WHERE c.calificacionPK.idevento = :idevento", Calificacion.class).setParameter("idevento", id).getResultList();
+            em.getTransaction().commit();
+            em.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

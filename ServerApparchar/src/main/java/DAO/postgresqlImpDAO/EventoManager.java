@@ -51,6 +51,9 @@ public class EventoManager implements EventoDAO {
             primary.setFecha(a.getEventoPK().getFecha());
             primary.setHoraFinal(a.getEventoPK().getHoraFinal());
             primary.setHoraInicio(a.getEventoPK().getHoraInicio());
+            int v = em.createQuery("SELECT e FROM Evento e", Evento.class).getResultList().size();
+            System.out.println("v-------------- " + v);
+            primary.setIdevento(v + 1);
             insertar.setEventoPK(primary);
             insertar.setFoto(a.getFoto());
             insertar.setNombre(a.getNombre());

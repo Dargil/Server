@@ -91,13 +91,14 @@ public class SERVEvento extends HttpServlet {
                 myEventoPK.setFecha(myEvento.getEventoPK().getFecha());
                 myEventoPK.setHoraFinal(horaf);
                 myEventoPK.setHoraInicio(horai);
-                myEventoPK.setIdevento(23);
 
                 eventico.setEventoPK(myEventoPK);
                 ArrayList<Categoria> myCategoria = (ArrayList<Categoria>) myEvento.getCategoriaCollection();
 
                 ArrayList<Empresa> myEmpresa = (ArrayList<Empresa>) myEvento.getEmpresaCollection();
                 ArrayList<Empresa> n = new ArrayList<>();
+                System.out.println("myEmpresa " + myEmpresa.size());
+                System.out.println("categorias " + myCategoria.size());
                 for (int i = 0; i < myEmpresa.size(); i++) {
                     Empresa e = myEmpresa.get(i);
                     Empresa m = new Empresa();

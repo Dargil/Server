@@ -5,9 +5,13 @@
  */
 package DAO.postgresqlImpDAO;
 
+import Entidades.Calificacion;
 import Entidades.Categoria;
 import Entidades.Empresa;
 import Entidades.Evento;
+import MODELO.CalificacionM;
+import MODELO.CalificacionPKM;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,6 +47,11 @@ public class Facade {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean insertarCalificaciones(Calificacion a) {
+        calificacion = new CalificacionManager(em);
+        return calificacion.insertarCal(a);
     }
 
     public <T> List<T> listarGenerico(T objet) {
@@ -114,6 +123,22 @@ public class Facade {
             return 0;
 
         }
+    }
+
+    public List<CalificacionM> getCalificaciones(int id) {
+        calificacion = new CalificacionManager(em);
+        List<Calificacion> n = calificacion.listarbyID(id);
+        List<CalificacionM> calificaciones = new ArrayList<>();
+        for (int i = 0; i < n.size(); i++) {
+            CalificacionM m = new CalificacionM();
+            Calificacion v = n.get(i);
+            m.setComentario(v.getComentario());
+            m.setMultimedia(v.getMultimedia());
+            m.setPorcentaje(v.getPorcentaje());
+            calificaciones.add(m);
+        }
+
+        return calificaciones;
     }
 
     public String getNitCliente(String user) {
