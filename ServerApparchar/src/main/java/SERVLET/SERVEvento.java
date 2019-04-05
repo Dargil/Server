@@ -17,6 +17,7 @@ import MODELO.CalificacionM;
 import MODELO.CategoriaM;
 import MODELO.EventoM;
 import MODELO.EventoPKM;
+import MODELO.LugarM;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -145,6 +146,10 @@ public class SERVEvento extends HttpServlet {
                     n.setNombre(b.getNombre());
                     n.setEventoPK(eventoPK);
                     n.setFoto(b.getFoto());
+                    LugarM bn = new LugarM();
+                    bn.setDireccion(b.getDireccion().getDireccion());
+                    System.out.println(b.getDireccion().getDireccion());
+                    n.setDireccion(bn);
                     eventos.add(n);
                 }
 
