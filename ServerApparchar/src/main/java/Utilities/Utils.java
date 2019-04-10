@@ -12,11 +12,10 @@ package Utilities;
 import java.io.BufferedReader;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
+import javax.servlet.http.HttpServletRequest;
 
 public class Utils {
 

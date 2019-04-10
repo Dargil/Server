@@ -5,12 +5,12 @@
  */
 package DAO;
 
-import VO.CategoriaVO;
+import Entidades.Categoria;
 
 /**
  *
  * @author jeffe
  */
-public interface CategoriaDAO extends Facade<CategoriaVO, String> {
+public interface CategoriaDAO extends DAOWork<Categoria, String> {
 
 }

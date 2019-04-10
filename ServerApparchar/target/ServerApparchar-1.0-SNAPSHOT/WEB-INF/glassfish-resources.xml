@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="post-gre-sql_d2ibfiosdpju21_hkwgophfphyvpzPool" non-transactional-connections="false" pool-resize-quantity="2" res-type="javax.sql.DataSource" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="serverName" value="ec2-54-243-228-140.compute-1.amazonaws.com"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="d2ibfiosdpju21"/>
+        <property name="User" value="hkwgophfphyvpz"/>
+        <property name="Password" value="0228772b951feb2c06272b52998b8cc3cf16d98c5d506c25f6e9ea40430ed6ae"/>
+        <property name="URL" value="jdbc:postgresql://ec2-54-243-228-140.compute-1.amazonaws.com:5432/d2ibfiosdpju21?sslmode=require"/>
+        <property name="driverClass" value="org.postgresql.Driver"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="java:app/Apparchar" object-type="user" pool-name="post-gre-sql_d2ibfiosdpju21_hkwgophfphyvpzPool"/>
+</resources>

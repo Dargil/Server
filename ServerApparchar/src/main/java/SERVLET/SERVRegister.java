@@ -7,7 +7,6 @@ package SERVLET;
 
 import DAO.postgresqlImpDAO.FacadeFactory;
 import Utilities.Utils;
-import VO.ClienteVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -54,7 +53,8 @@ public class SERVRegister extends HttpServlet {
             eliminar = request.getParameter("eliminar");
             consultar = request.getParameter("consultar");
 
-            if (insertar != null) {
+           /*
+             if (insertar != null) {
                 System.out.println("entra a insertar");
                 System.out.println("se recibio: " + insertar);
                 Gson myGson=new Gson();
@@ -115,6 +115,7 @@ public class SERVRegister extends HttpServlet {
                 System.out.println("se envio: " + a);
                 myFacade.CerrarConexion();
             }
+            */
 
         }
     }

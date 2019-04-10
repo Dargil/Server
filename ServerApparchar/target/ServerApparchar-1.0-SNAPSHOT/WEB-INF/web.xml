@@ -16,6 +16,14 @@
         <servlet-name>SERVRegister</servlet-name>
         <servlet-class>SERVLET.SERVRegister</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SERVEvento</servlet-name>
+        <servlet-class>SERVLET.SERVEvento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SERVCalificacion</servlet-name>
+        <servlet-class>SERVLET.SERVCalificacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SERVCliente</servlet-name>
         <url-pattern>/SERVCliente</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>SERVRegister</servlet-name>
         <url-pattern>/SERVRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVEvento</servlet-name>
+        <url-pattern>/SERVEvento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVCalificacion</servlet-name>
+        <url-pattern>/SERVCalificacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
