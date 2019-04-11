@@ -6,15 +6,14 @@
 package SERVLET;
 
 import DAO.postgresqlImpDAO.FacadeFactory;
-import VO.CategoriaVO;
+import Entidades.Categoria;
+import MODELO.CategoriaM;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,36 +35,19 @@ public class SERVCategoria extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("Recibiendo Peticion");
-            String insertar = "";
-            String modificar = "";
-            String listar = "";
-            String eliminar = "";
-            String consultar = "";
-            String login = "";
-            insertar = request.getParameter("insertar");
-            modificar = request.getParameter("modificar");
-            listar = request.getParameter("listar");
-            eliminar = request.getParameter("eliminar");
-            consultar = request.getParameter("consultar");
-            login = request.getParameter("login");
-            if (listar != null) {
-                System.out.println("se recibio: " + listar);
-                Gson myGson = new Gson();
-                FacadeFactory myFacade = new FacadeFactory();
-                myFacade.Conexion();
-                ArrayList<CategoriaVO> resultado = myFacade.getCategoriaDAO().listar();
-                System.out.println("resultado " + resultado.toString());
-                JsonObject o = new JsonObject();
-                o.addProperty("respuesta", myGson.toJson(resultado));
-                out.write(o.toString());
-                out.print(o.toString());
-                System.out.println("se envio: " + o.toString());
-                myFacade.CerrarConexion();
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet categoria</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet dfdf at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,13 +63,7 @@ public class SERVCategoria extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SERVCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(SERVCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -101,12 +77,41 @@ public class SERVCategoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SERVCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(SERVCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        System.out.println("Recibiendo Peticion");
+        String insertar = "";
+        String modificar = "";
+        String listar = "";
+        String eliminar = "";
+        String consultar = "";
+        String login = "";
+        insertar = request.getParameter("insertar");
+        modificar = request.getParameter("modificar");
+        listar = request.getParameter("listar");
+        eliminar = request.getParameter("eliminar");
+        consultar = request.getParameter("consultar");
+        login = request.getParameter("login");
+        if (listar != null) {
+            System.out.println("se recibio: " + listar);
+            Gson myGson = new Gson();
+            Categoria myCategoria = new Categoria();
+            List<Categoria> resultado = FacadeFactory.getFacade().listarGenerico(myCategoria);
+            System.out.println("resultado " + resultado.toString());
+            ArrayList<CategoriaM> categoria = new ArrayList<>();
+            for (int i = 0; i < resultado.size(); i++) {
+                CategoriaM n = new CategoriaM();
+                Categoria b = resultado.get(i);
+                n.setId(b.getId());
+                n.setNombre(b.getNombre());
+                categoria.add(n);
+            }
+
+            JsonObject o = new JsonObject();
+            o.addProperty("respuesta", myGson.toJson(categoria));
+            out.write(o.toString());
+            out.print(o.toString());
+            System.out.println("se envio: " + o.toString());
         }
     }
 

@@ -5,12 +5,13 @@
  */
 package DAO;
 
-import VO.CalificacionVO;
+import Entidades.Calificacion;
 
 /**
  *
  * @author jeffe
  */
-public interface CalificacionDAO extends Facade<CalificacionVO, String> {
- CalificacionVO consultar(String idUser,String idEvento);
+public interface CalificacionDAO extends DAOWork<Calificacion, String> {
+
+    Calificacion consultar(String idUser, String idEvento);
 }

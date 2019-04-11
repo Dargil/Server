@@ -5,12 +5,12 @@
  */
 package DAO;
 
-import VO.EventoVO;
+import Entidades.Evento;
 
 /**
  *
  * @author jeffe
  */
-public interface EventoDAO extends Facade<EventoVO, String> {
+public interface EventoDAO extends DAOWork<Evento, String> {
 
 }
